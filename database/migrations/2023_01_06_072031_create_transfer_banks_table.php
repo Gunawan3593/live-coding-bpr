@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_customer_services', function (Blueprint $table) {
+        Schema::create('transfer_banks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('customer_from');
+            $table->foreignId('account_from');
+            $table->foreignId('customer_to');
+            $table->foreignId('account_to');
+            $table->double('nominal', 20, 2);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_customer_services');
+        Schema::dropIfExists('transfer_banks');
     }
 };

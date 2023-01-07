@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_transactions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('account_from');
-            $table->foreignId('account_to');
+            $table->foreignId('ref_id');
+            $table->foreignId('account');
             $table->double('nominal', 20, 2);
             $table->string('type');
-            $table->foreignId('input_by');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_transactions');
+        Schema::dropIfExists('transactions');
     }
 };
